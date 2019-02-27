@@ -45,6 +45,7 @@
       var svg = d3.select("body").append("svg")
                   .attr("height", height)
                   .attr("width", width);
+                  svg.append("rect");
 
 
       var bars=   svg.selectAll("rect")
