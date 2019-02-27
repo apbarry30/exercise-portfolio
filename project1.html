@@ -49,10 +49,10 @@
                    svg.selectAll("rect")
                    .data(data)
                       .enter()
-                      .append("rect");
-                      rect.attr("x", function (d,i) {
-                        return(i*10);
+                      .append("rect")
 
+                      .attr("x", function(d,i) {
+                        return(i*10);
                       })
                       .attr("y", function(d){
                         return (d.w);
