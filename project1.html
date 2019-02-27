@@ -47,7 +47,8 @@
                   .attr("width", width);
 
 
-      var bars= svg.selectAll("rect")
+      var rect= svg.selectAll("rect")
+      var bars=
                 .data(data)
                 .enter()
                 .append("rect")
@@ -57,11 +58,11 @@
                 .attr("y",10);
 
 
-                circle.attr("x",function(d,i) {
+                rect.attr("x",function(d,i) {
 			               return d[0];
 
 			                });
-                      circle.attr("y", function(d,i){
+                      rect.attr("y", function(d,i){
 	                       return d[1];
                        })
 
