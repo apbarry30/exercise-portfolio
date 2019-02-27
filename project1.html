@@ -46,10 +46,11 @@
                   .attr("height", height)
                   .attr("width", width);
 
-      var circle = svg.selectAll("circle")
+      var circle= svg.selectAll("circle")
                 .data(data)
                 .enter()
                 .append("circle");
+
 
                 circle.attr("cx",10)
                 .attr("cy",10)
