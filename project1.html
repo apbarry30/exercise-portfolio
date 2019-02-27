@@ -34,8 +34,35 @@
 
     <script src="js/d3.min.js"></script>
     <script>
-      var d3.select(body)
-            .append(svg);
+
+      var data= d3.csv("data/mlb-standings.csv").then(function(data){
+          console.log(data);
+        });
+
+      var width= 500;
+	    var height= 100;
+      var svg = d3.select("body").append("svg")
+                  .attr("height", height)
+                  .attr("width", width);
+
+var circle = svg.selectAll("circle")
+                .data(data)
+                .enter()
+                .append("circle");
+
+                circle.attr("cx",10)
+                .attr("cy",10)
+                .attr("r",5)
+
+                circle.attr("cx",function(d,i) {
+			               return d[0];
+
+			                });
+                      circle.attr("cy", function(d,i){
+	                       return d[1];
+                       })
+
+
       // add your script here
       // OR
       // add a link to a stand-alone script in the js folder
