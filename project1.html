@@ -45,18 +45,17 @@
       var svg = d3.select("body").append("svg")
                   .attr("height", height)
                   .attr("width", width);
-                  .append("rect")
-                  .attr("x",0)
-                  .attr("y",50)
-                  .attr("width",10)
-                  .attr("fill", "blue");
+        svg.append("rect");
 
 
       var bars=   svg.selectAll("rect")
                   .data(data)
                   .enter()
-                  .append("rect");
-
+                  .append("rect")
+                  .attr("x",0)
+                  .attr("y",50)
+                  .attr("width",10)
+                  .attr("fill", "blue");
 
 
 
