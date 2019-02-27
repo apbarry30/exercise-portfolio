@@ -46,17 +46,18 @@
                   .attr("height", height)
                   .attr("width", width);
 
-                  svg.append("rect");
+                   svg.append("rect")
+                   .attr("x",0)
+                   .attr("y",50)
+                   .attr("width",10)
+                   .attr("fill", "blue");
 
 
-                  svg.selectAll("rect")
+                   svg.selectAll("rect")
                   .data(data)
                   .enter()
-                  .append("rect")
-                  .attr("x",0)
-                  .attr("y",50)
-                  .attr("width",10)
-                  .attr("fill", "blue");
+                  .append("rect");
+
 
 
 
