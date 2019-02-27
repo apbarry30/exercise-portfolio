@@ -47,8 +47,8 @@
                   .attr("width", width);
 
 
-      var rect= svg.selectAll("rect")
-      var bars=
+      var rect= svg.append("rect");
+      var bars= svg.selectAll("rect")
                 .data(data)
                 .enter()
                 .append("rect")
