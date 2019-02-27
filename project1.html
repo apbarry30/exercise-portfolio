@@ -49,8 +49,8 @@
                    svg.selectAll("rect")
                    .data(data)
                       .enter()
-                      .append("rect")
-                      .attr("x", function (d,i)) {
+                      .append("rect");
+                      rect.attr("x", function (d,i)) {
                         return(i*10);
                         )
                       }
