@@ -50,16 +50,15 @@
                    .data(data)
                       .enter()
                       .append("rect")
-
                       .attr("x", function(d,i) {
-                        return(i*10);
+                        return d[];
                       })
                       .attr("y", function(d){
-                        return (d.w);
+                        return height-d[];
                       })
                       .attr("width",30)
                       .attr("height", function (d){
-                        return(d.w);
+                        return d[];
                       });
 
 
