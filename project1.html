@@ -50,10 +50,12 @@
                    .data(data)
                       .enter()
                       .append("rect");
+                      .attr("x",20)
+                      .attr("y", 20)
                       .attr("x", function (d,i)) {
                         return(i*10)
                         )
-                      }
+                      };
 
 
 
