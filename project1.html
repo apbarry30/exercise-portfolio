@@ -42,23 +42,23 @@
 
       var width= 500;
 	    var height= 500;
-      var svg = d3.select("body").append("svg")
+      var svg = d3.select("body").append("svg");
                   .attr("height", height)
                   .attr("width", width);
 
-      var bars=    svg.selectAll("rect")
+        svg.selectAll("rect")
                    .data(data)
                       .enter()
                       .append("rect")
                       .attr("x", function(d,i) {
-                        return (i*10);
+                        return (i*20);
                       })
                       .attr("y", function(d){
-                        return height-d[2];
+                        return height-d.w;
                       })
                       .attr("width",30)
                       .attr("height", function (d){
-                        return d[2];
+                        return d.w;
                       });
 
 
