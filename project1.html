@@ -46,20 +46,6 @@
                   .attr("height", height)
                   .attr("width", width);
 
-        svg.selectAll("rect")
-                   .data(data)
-                      .enter()
-                      .append("rect")
-                      .attr("x", function(d,i) {
-                        return (i*20);
-                      })
-                      .attr("y", function(d){
-                        return height-d.w;
-                      })
-                      .attr("width",30)
-                      .attr("height", function (d){
-                        return d.w;
-                      });
 
 
 
