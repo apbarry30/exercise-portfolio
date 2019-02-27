@@ -32,12 +32,13 @@
       </main>
     </div>
 
+<script src="js/d3.min.js"></script>
+    <script>
 
-    <script src="js/d3.min.js">
+      var data= [] d3.csv("mlb-standings.csv").then(function(data){
 
-      var data= d3.csv("our csv data/mlb-standings.csv").then(function(data){
-          console.log(data);
         });
+        console.log(data);
 
       var width= 500;
 	    var height= 100;
