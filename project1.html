@@ -61,11 +61,17 @@
           					 .attr("height", function(d) {
           						 return data.w;
           					 });
+           var labels = svg.selectAll("text")
+                        .data(data)
+                        .enter()
+                        .append("text")
+                        .text(function(d) {
+                          return parseName(d.Name) + "-" + d.Position;
+                        })
+                        .style("font-size", "8px");
 
-                     function parseName(team) {
-                       var name = team.split(" ");
-                       return name[0]
-                     }
+
+
 
                    });
 
