@@ -81,9 +81,16 @@
                 						return (height - d.w) + 8;
                 					});
 
-            var our_scale = d3.scaleLinear()
-                  .domain([100,900])
-                  .range([0,200]);
+                        var xScale = d3.scaleLinear()
+                                      .domain([0, d3.max(data, function(d) {
+                                        return d[0];
+                                      })])
+                                      .range([0, width]);
+                        var yScale = d3.scaleLinear()
+                                      .domain([0, d3.max(data, function(d) {
+                                        return d[1];
+                                      })])
+                                      .range([0, height]);
 
 
 
