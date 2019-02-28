@@ -63,15 +63,15 @@
           					 });
 
                      function parseName(team) {
-                       var name = team.split(" ");
-                       return name[0]
+                       var abbr = team;
+                       return abbr;
                      }
            var labels = svg.selectAll("text")
                         .data(data)
                         .enter()
                         .append("text")
                         .text(function(d) {
-                          return parseName(d.Name) + "-" + d.Position;
+                          return parseName(d.abbr) + "-" + d.w;
                         })
                         .style("font-size", "8px");
 
