@@ -61,6 +61,11 @@
           					 .attr("height", function(d) {
           						 return data.w;
           					 });
+
+                     function parseName(team) {
+                       var name = team.split(" ");
+                       return name[0]
+                     }
            var labels = svg.selectAll("text")
                         .data(data)
                         .enter()
