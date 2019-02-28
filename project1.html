@@ -75,6 +75,13 @@
                         })
                         .style("font-size", "8px");
 
+                        labels.attr("x", function(d, i) {
+                					  return (i * 32) + 2;
+                  				})
+                				  .attr("y", function(d) {
+                						return (h - data.w) + 8;
+                					});
+
 
 
 
