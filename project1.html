@@ -51,7 +51,18 @@
                      .enter()
                      .append("rect");
 
-  });
+                     .attr("x", function(d, i) {
+          					   return (i * 32);
+          				   })
+          				   .attr("y", function(d) {
+          						 return h - d.w;
+          					 })
+          					 .attr("width", 30)
+          					 .attr("height", function(d) {
+          						 return d.w;
+          					 });
+
+                   });
 
 
 
