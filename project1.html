@@ -55,11 +55,11 @@
           					   return (i * 32);
           				   })
           				   .attr("y", function(d) {
-          						 return height - data.w;
+          						 return height - d.w;
           					 })
           					 .attr("width", 30)
           					 .attr("height", function(d) {
-          						 return data.w;
+          						 return d.w;
           					 });
 
                      function parseName(team) {
@@ -71,7 +71,7 @@
                         .enter()
                         .append("text")
                         .text(function(d) {
-                          return parseName(data.abbr) + "-" + data.w;
+                          return parseName(d.abbr) + "-" + d.w;
                         })
                         .style("font-size", "8px");
 
@@ -79,7 +79,7 @@
                 					  return (i * 32) + 2;
                   				})
                 				  .attr("y", function(d) {
-                						return (height - data.w) + 8;
+                						return (height - d.w) + 8;
                 					});
 
 
