@@ -41,9 +41,7 @@
         console.log(data);
 
         var xScale = d3.scaleLinear()
-                      .domain([0, d3.max(data, function(d){
-                        return (+d[1]);
-                      })])
+                      .domain([0,108])
                       .range([0, width]);
                     //  .attr("x", function(d) {
                     //    return xScale(+d[1]);
@@ -62,11 +60,10 @@
               var rect=    svg.selectAll("rect")
                      .data(data)
                      .enter()
-                     .append("rect")
+                     .append("rect");
                      .attr("width", 15)
           			     .attr("height", function(d) {
           					 return d.w; });
-
                      .attr("x", function(d,i) {
           					   return xScale(i*32);
           				   })
