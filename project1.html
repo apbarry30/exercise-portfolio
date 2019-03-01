@@ -81,13 +81,13 @@
                                       .domain([0, d3.max(data, function(d) {
                                         return +d[1];
                                       })])
-                                      .range([0, width]);
+                                      .range([0, width])
 
                         var yScale = d3.scaleLinear()
                                       .domain([0, d3.max(data, function(d) {
                                         return d.w;
                                       }])
-                                      .range([0, height]);
+                                      .range([0, height])
 
                                       .attr("x", function(d) {
                                         return +d[1]; })
