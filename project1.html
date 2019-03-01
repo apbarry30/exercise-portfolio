@@ -61,16 +61,13 @@
           						 return d.w;
           					 });
 
-                     function parseName(team) {
-                       var abbr = team;
-                       return abbr;
-                     }
+                  
            var labels = svg.selectAll("text")
                         .data(data)
                         .enter()
                         .append("text")
                         .text(function(d) {
-                          return parseName(d.abbr) + "-" + d.w;
+                          return parseName(d.abbr) + "-" + +d.w;
                         })
                         .style("font-size", "8px");
 
@@ -83,7 +80,7 @@
 
                         var xScale = d3.scaleLinear()
                                       .domain([0, d3.max(data, function(d) {
-                                        return d[1];
+                                        return +d[2];
                                       })])
                                       .range([0, width]);
                         var yScale = d3.scaleLinear()
