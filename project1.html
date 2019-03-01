@@ -54,7 +54,7 @@
                         return d.w;
                       })])
                       .range([0, height]);
-                      
+
       var svg = d3.select("body").append("svg");
                   svg.attr("height", height)
                   .attr("width", width);
@@ -85,7 +85,7 @@
                         .enter()
                         .append("text")
                         .text(function(d) {
-             						 return (+d[1]);
+             						 return (labels+d[1]);
              					 })
              					 .style("font-size", "8px");
 
