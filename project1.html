@@ -82,7 +82,7 @@
                         .enter()
                         .append("text")
                         .text(function(d) {
-             						 return +d.abbr;
+             						 return (+d.abbr);
              					 })
              					 .style("font-size", "8px");
 
