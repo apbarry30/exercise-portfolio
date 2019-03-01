@@ -61,14 +61,12 @@
           						 return d.w;
           					 });
 
-                  
+                     
            var labels = svg.selectAll("text")
                         .data(data)
                         .enter()
                         .append("text")
-                        .text(function(d) {
-                          return parseName(d.abbr) + "-" + +d.w;
-                        })
+                        .text(abbr)
                         .style("font-size", "8px");
 
                         labels.attr("x", function(d, i) {
