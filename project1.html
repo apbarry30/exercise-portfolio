@@ -65,7 +65,7 @@
           			     .attr("height", function(d) {
           					 return d.w; })
                      .attr("x", function(d,i) {
-          					   return yScale(i*3);
+          					   return yScale(i*3)+1;
           				   })
                      rect.attr("y", function(d) {
                      return yScale(height-d[2]); });
@@ -82,12 +82,12 @@
                         .enter()
                         .append("text")
                         .text(function(d) {
-             						 return (+d.abbr);
+             						 return (d.abbr);
              					 })
              					 .style("font-size", "8px");
 
                         labels.attr("x", function(d, i) {
-                					  return (i * 32) + 2;
+                					  return (i * 32) + 1;
                   				})
                 				  .attr("y", function(d) {
                 						return (height - d.w) + 8;
