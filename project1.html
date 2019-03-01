@@ -62,7 +62,7 @@
               var rect=    svg.selectAll("rect")
                      .data(data)
                      .enter()
-                     .append("rect");
+                     .append("rect")
                      .attr("width", 15)
           			     .attr("height", function(d) {
           					 return d.w; });
