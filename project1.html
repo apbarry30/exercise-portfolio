@@ -51,10 +51,10 @@
                      .append("rect")
 
                      .attr("x", function(d, i) {
-          					   return xScale(+d[1]);
+          					   return (i *30) + xScale(+d[1]);
           				   })
                      .attr("y", function(d) {
-                     return yScale(d[2]); });
+                     return yScale(height-d[2]); });
 
 
           				//   .attr("y", function(d) {
