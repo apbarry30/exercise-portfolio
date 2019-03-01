@@ -50,10 +50,10 @@
                      .enter()
                      .append("rect")
 
-                     .attr("x", function(d) {
+                     rect.attr("x", function(d) {
           					   return xScale(i*32)+2;
           				   })
-                     .attr("y", function(d) {
+                     rect.attr("y", function(d) {
                      return yScale(height-d[2]); });
 
 
