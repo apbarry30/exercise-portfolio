@@ -96,6 +96,11 @@
 
 
 var padding=20
+var xAxis = d3.axisBottom()
+              .scale(xScale);
+              svg.append("g")
+    .attr("class", "x-axis")
+    .call(xAxis)
 
           	 });                            //.attr("y", function(d) {
                                       //  return yScale(height-d[2]);
