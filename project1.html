@@ -53,13 +53,14 @@
                      .attr("x", function(d, i) {
           					   return (i * 32);
           				   })
-          				   .attr("y", function(d) {
-          						 return (height - d.w);
-          					 })
-          					 .attr("width", 15)
-          					 .attr("height", function(d) {
-          						 return d.w;
-          					 });
+
+          				//   .attr("y", function(d) {
+          				//		 return (height - d.w);
+          			//		 })
+          			//		 .attr("width", 15)
+          		//			 .attr("height", function(d) {
+          			//			 return d.w;
+          		//			 });
 
            var labels = svg.selectAll("text")
                         .data(data)
@@ -78,7 +79,7 @@
                 					});
 
 
-
+var padding=20
                         var xScale = d3.scaleLinear()
                                       .domain([0, d3.max(data, function(d){
                                         return (+d[1]);
@@ -94,7 +95,7 @@
                                       })])
                                       .range([0, height]);
                                       .attr("y", function(d) {
-                                        return yScale(d[2]);
+                                        return yScale(height-d[2]);
                                        })
 
 
