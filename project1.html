@@ -53,7 +53,7 @@
           			     rect.attr("height", function(d) {
           					 return d.w;
 
-                     rect.attr("x", function(d) {
+                     rect.attr("x", function(d,i) {
           					   return xScale(i*20)+2;
           				   })
                      rect.attr("y", function(d) {
