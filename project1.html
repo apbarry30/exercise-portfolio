@@ -54,7 +54,7 @@
           					   return (i * 32);
           				   })
           				   .attr("y", function(d) {
-          						 return height - d.w;
+          						 return (height - d.w);
           					 })
           					 .attr("width", 30)
           					 .attr("height", function(d) {
@@ -77,9 +77,11 @@
                 						return (height - d.w) + 8;
                 					});
 
+
+
                         var xScale = d3.scaleLinear()
                                       .domain([0, d3.max(data, function(d){
-                                        return +d[1];
+                                        return (+d[1]);
                                       })])
                                       .range([0, width]).attr("x", function(d) {
                                         return xScale(+d[1]); });
