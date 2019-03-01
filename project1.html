@@ -83,7 +83,7 @@
                                       .domain([0, d3.max(data, function(d){
                                         return (+d[1]);
                                       })])
-                                      .range([0, width]);
+                                      .range([0, width])
                                       .attr("x", function(d) {
                                         return xScale(+d[1]);
                                       });
@@ -92,7 +92,7 @@
                                       .domain([0,d3.max(data, function(d){
                                         return d.w;
                                       })])
-                                      .range([0, height]);
+                                      .range([0, height])
                                       .attr("y", function(d) {
                                         return yScale(d[2]);
                                        })
