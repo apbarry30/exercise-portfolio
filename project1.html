@@ -48,9 +48,9 @@
               var rect=    svg.selectAll("rect")
                      .data(data)
                      .enter()
-                     .append("rect")
-                     .attr("width", 15)
-          			 .attr("height", function(d) {
+                     .append("rect");
+                     rect.attr("width", 15)
+          			     rect.attr("height", function(d) {
           					 return d.w;
 
                      rect.attr("x", function(d) {
