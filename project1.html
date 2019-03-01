@@ -63,11 +63,11 @@
                      .data(data)
                      .enter()
                      .append("rect");
-                     rect.attr("width", 15)
-          			     rect.attr("height", function(d) {
-          					 return d.w;
+                     .attr("width", 15)
+          			     .attr("height", function(d) {
+          					 return d.w; })
 
-                     rect.attr("x", function(d,i) {
+                     .attr("x", function(d,i) {
           					   return xScale(i*32);
           				   })
                      rect.attr("y", function(d) {
