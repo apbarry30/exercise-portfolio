@@ -34,7 +34,7 @@
 
 <script src="js/d3.min.js"></script>
     <script>
-    var width= 500;
+    var width= 800;
     var height= 500;
 
      d3.csv("data/mlb-standings.csv").then(function(data){
@@ -48,7 +48,7 @@
                   svg.selectAll("rect")
                      .data(data)
                      .enter()
-                     .append("rect");
+                     .append("rect")
 
                      .attr("x", function(d, i) {
           					   return (i * 32);
