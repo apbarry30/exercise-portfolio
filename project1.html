@@ -49,6 +49,9 @@
                      .data(data)
                      .enter()
                      .append("rect")
+                     .attr("width", 15)
+          			 .attr("height", function(d) {
+          					 return d.w;
 
                      rect.attr("x", function(d) {
           					   return xScale(i*32)+2;
@@ -60,9 +63,7 @@
           				//   .attr("y", function(d) {
           				//		 return (height - d.w);
           			//		 })
-          					 .attr("width", 15)
-          			 .attr("height", function(d) {
-          					 return d.w;
+
           		 });
 
            var labels = svg.selectAll("text")
