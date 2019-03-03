@@ -61,6 +61,14 @@
       return d.fum;
     };
 
+var labels= svg.selectAll("text")
+            .data(data)
+            .enter()
+            .append("text")
+            .text(function(d){
+              return d.Yds + "," + d.fum;
+            })
+
 
 
 
