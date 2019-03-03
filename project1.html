@@ -52,7 +52,7 @@
                       .domain([0,d3.max(data, function(d){
                         return d.w;
                       })])
-                      .range([height-padding, padding]);
+                      .range([padding, height-padding]);
 
       var svg = d3.select("body").append("svg");
                   svg.attr("height", height)
