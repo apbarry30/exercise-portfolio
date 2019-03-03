@@ -45,11 +45,12 @@
                 .attr("width", width)
                 .attr("height", height);
 
-circles=    svg.selectAll("ciricle")
+  var circles= svg.selectAll("circle")
     .data(data)
     .enter()
-    .append("circle")
-    .attr("cx", function(d){
+    .append("circle");
+
+    circles.attr("cx", function(d){
       return d.Yds;
     })
     .attr("cy", function(d){
