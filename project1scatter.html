@@ -23,7 +23,7 @@
 
       <main>
 
-        <h2><!-- VISUALIZATION TITLE --></h2>
+        <h2>NFL Yards vs. Touchdowns</h2>
 
         <p><!-- INFORMATION ABOUT YOUR VISUALIZATION: What is this about? --></p>
 
@@ -36,51 +36,11 @@
     <script>
     var width= 500;
     var height= 500;
-    
-     d3.csv("data/mlb-standings.csv").then(function(data){
+    //Show the relationship between yards (`Yds`) and touchdowns (`TD`). Use fumbles (`fum`) to represent the size of each point.
+     d3.csv("nfl-rushing.csv").then(function(data){
         console.log(data);
 
-
-      var svg = d3.select("body").append("svg");
-                  svg.attr("height", height)
-                  .attr("width", width);
-
-                  svg.selectAll("rect")
-                     .data(data)
-                     .enter()
-                     .append("rect")
-
-                     .attr("x", function(d, i) {
-          					   return (i * 32);
-          				   })
-          				   .attr("y", function(d) {
-          						 return height - d.w;
-          					 })
-          					 .attr("width", 30)
-          					 .attr("height", function(d) {
-          						 return d.w;
-          					 });
-
-                     function parseName(team) {
-                       var abbr = team;
-                       return abbr;
-                     }
-           var labels = svg.selectAll("text")
-                        .data(data)
-                        .enter()
-                        .append("text")
-                        .text(function(d) {
-                          return parseName(d.abbr) + "-" + d.w;
-                        })
-                        .style("font-size", "8px");
-
-                        labels.attr("x", function(d, i) {
-                					  return (i * 32) + 2;
-                  				})
-                				  .attr("y", function(d) {
-                						return (height - d.w) + 8;
-                					});
-
+  
 
 
 
