@@ -50,7 +50,7 @@
         var yScale = d3.scaleLinear()
                       .domain([d3.max(data, function(d){
                         return d.w;
-                      }),0]])
+                      }),0])
                       .range([0, height]);
 
       var svg = d3.select("body").append("svg");
