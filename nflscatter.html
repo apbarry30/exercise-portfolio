@@ -87,8 +87,19 @@
 //            .text(function(d){
 //              return d.Yds + "," + d.fum;
 //            })
+var xAxis= d3.axisBottom()
+            .scale(xScale);
+            svg.append("g")
+            .attr("class", "xaxis")
+            .attr("transform", "translate(0," + height-padding)+ ")")
+var yAxis = d3.axisLeft()
+           .scale(yScale);
+           svg.append("g")
+           .attr("class", "yaxis")
+           .attr("transform", "translate("padding",  + ("height-padding" + )")
+           .call(yAxis);
 
-
+          	 });
 
 
 
