@@ -87,7 +87,7 @@
              					 .style("font-size", "8px");
 
                         labels.attr("x", function(d, i) {
-                					  return (i * 32) + 1;
+                					  return (i * 20) + 1;
                   				})
                 				  .attr("y", function(d) {
                 						return (height - d.w) + 8;
@@ -97,10 +97,10 @@
 
 var padding=20;
 var yAxis = d3.axisLeft(yScale);
-          
+
            svg.append("g")
            .attr("class", "y-axis")
-           .attr("transform", "translate ( 20,"+ (height-padding) + ")")
+           .attr("transform", "translate ( 20,"+ (padding) + ")")
            .call(yAxis);
 
           	 });                            //.attr("y", function(d) {
