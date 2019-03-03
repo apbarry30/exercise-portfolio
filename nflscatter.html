@@ -59,7 +59,7 @@
                             })])
                             .range([height-padding, padding]);
 
-            var rScale= d3.ScaleLinear()
+            var rScale= d3.scaleLinear()
                         .domain([0,d3.max(data, function(d){
                           return d.fum
                         })])
