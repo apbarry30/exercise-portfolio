@@ -87,11 +87,13 @@
 //            .text(function(d){
 //              return d.Yds + "," + d.fum;
 //            })
+var padding=20;
 var xAxis= d3.axisBottom()
             .scale(xScale);
             svg.append("g")
             .attr("class", "xaxis")
-            .attr("transform", "translate(0," + height-padding)+ ")")
+            .attr("transform", "translate(0," + height-padding)+ ")");
+
 var yAxis = d3.axisLeft()
            .scale(yScale);
            svg.append("g")
