@@ -45,7 +45,7 @@
                 .attr("width", width)
                 .attr("height", height);
 
-    svg.selectAll("ciricle")
+circles=    svg.selectAll("ciricle")
     .data(data)
     .enter()
     .append("circle")
@@ -55,7 +55,9 @@
     .attr("cy", function(d){
       return d.TD;
     })
-    .attr("r",5);
+    .attr("r",5), function(d){
+      return d.fum;
+    };
 
 
 
