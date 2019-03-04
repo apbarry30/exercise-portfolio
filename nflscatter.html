@@ -62,7 +62,7 @@
 
             var rScale= d3.scaleLinear()
                         .domain([0,d3.max(data, function(d){
-                          return d.fum
+                          return Math.Sqrt(d.fum);
                         })]);
 
 
