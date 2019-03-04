@@ -93,7 +93,8 @@ var xAxis= d3.axisBottom(xScale)
 
             svg.append("g")
             .attr("class", "xaxis")
-            .attr("transform", "translate(20," + (height-padding)+ ")");
+            .attr("transform", "translate(20," + (height-padding)+ ")")
+            .call(xAxis);
 
             var yAxis = d3.axisLeft(yScale)
 
