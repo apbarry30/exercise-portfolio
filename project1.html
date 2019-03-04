@@ -71,7 +71,7 @@
           					 return d.w; })
 
                      .attr("x", function(d,i) {
-          					   return (i*20)+1;
+          					   return padding+(i*20)+1;
           				   })
                      .attr("y", function(d) {
                      return yScale(d.w);
