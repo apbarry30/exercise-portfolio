@@ -92,10 +92,10 @@
              					 .style("font-size", "8px");
 
                         labels.attr("x", function(d, i) {
-                					  return xScale(i * 20) + 1;
+                					  return (i * 20) + 1;
                   				})
                 				  .attr("y", function(d) {
-                						return yScale(height - d.w) + 8;
+                						return (height - d.w) + 8;
                 					});
 
 
