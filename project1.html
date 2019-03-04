@@ -74,7 +74,7 @@
           					   return padding+(i*20)+1;
           				   })
                      .attr("y", function(d) {
-                     return yScale(d.w);
+                     return yScale(d.w-rect.height);
                      });
 
 
