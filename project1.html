@@ -97,7 +97,7 @@
                 					  return (i * 20) + 1;
                   				})
                 				  .attr("y", function(d) {
-                						return height- yScale(d.w)+1;
+                						return height- yScale(d.w)-1;
                 					});
 
 
@@ -109,6 +109,7 @@ var yAxis = d3.axisLeft(yScale);
            .attr("class", "y-axis")
            .attr("transform", "translate (20,"+ (padding) + ")")
            .call(yAxis);
+
 
           	 });                            //.attr("y", function(d) {
                                       //  return yScale(height-d[2]);
