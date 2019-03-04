@@ -58,7 +58,7 @@
                             .domain([0, d3.max(data, function(d){
                               return d.TD;
                             })])
-                            .range([height-padding,padding]);
+                            .range([padding, height-padding]);
 
             var rScale= d3.scaleLinear()
                         .domain([0,d3.max(data, function(d){
@@ -75,7 +75,8 @@
       return xScale(i*20) +2;
     })
     .attr("cy", function(d){
-      return yScale(d.TD);
+      return height-[yScale(d.TD)];
+
     })
     .attr("r",5);
 
