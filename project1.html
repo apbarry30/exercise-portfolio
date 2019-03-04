@@ -65,15 +65,15 @@
                      .enter()
                      .append("rect");
 
-                     rect.attr("width", 15)
+                     rect.attr("width", 10)
           			     .attr("height", function(d) {
-          					 return d.w })
+          					 return xScale(d.w) })
 
                      .attr("x", function(d,i) {
           					   return (i*4)+1;
           				   })
                      .attr("y", function(d) {
-                     return yScale(d.w); });
+                     return(height-d.w); });
 
 
           				//   .attr("y", function(d) {
