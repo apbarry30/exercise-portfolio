@@ -64,14 +64,16 @@
                      .data(data)
                      .enter()
                      .append("rect");
+
                      rect.attr("width", 15)
           			     .attr("height", function(d) {
           					 return yScale(d.w) })
+
                      .attr("x", function(d,i) {
           					   return yScale(i*4)+1;
           				   })
                      rect.attr("y", function(d) {
-                     return yScale(height-d[2]); });
+                     return yScale(d.w); });
 
 
           				//   .attr("y", function(d) {
