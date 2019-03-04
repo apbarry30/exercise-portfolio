@@ -68,13 +68,13 @@
                      rect.attr("width", 10)
 
           			     .attr("height", function(d) {
-          					 return d.w; })
+          					 return yScale(d.w;) })
 
                      .attr("x", function(d,i) {
           					   return padding+(i*20)+1;
           				   })
                      .attr("y", function(d) {
-                     return yScale(height-d.w);
+                     return height-yScale(d.w);
                      });
 
 
