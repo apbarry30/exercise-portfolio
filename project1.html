@@ -41,7 +41,7 @@
      d3.csv("data/mlb-standings.csv").then(function(data){
         console.log(data);
 
-        
+
 
         //var xScale = d3.scaleLinear()
           //            .domain([0,])
@@ -66,7 +66,7 @@
                      .append("rect");
                      rect.attr("width", 15)
           			     .attr("height", function(d) {
-          					 return yScale(d.w); })
+          					 return yScale(height-d.w); })
                      .attr("x", function(d,i) {
           					   return yScale(i*4)+1;
           				   })
