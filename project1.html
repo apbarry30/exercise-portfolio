@@ -70,10 +70,10 @@
           					 return yScale(d.w) })
 
                      .attr("x", function(d,i) {
-          					   return yScale(i*4)+1;
+          					   return (i*4)+1;
           				   })
                      rect.attr("y", function(d) {
-                     return yScale(d.w); });
+                     return yScale(height-d.w); });
 
 
           				//   .attr("y", function(d) {
