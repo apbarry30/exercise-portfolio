@@ -35,8 +35,8 @@
 <script src="js/d3.min.js"></script>
     <script>
     var width= 800;
-    var height= 500;
-    var padding=20;
+    var height= 600;
+    var padding=25;
 
      d3.csv("data/mlb-standings.csv").then(function(data){
         console.log(data);
@@ -54,7 +54,7 @@
                       .domain([0,d3.max(data, function(d){
                         return d.w;
                       })])
-                      .range([padding, height-padding]);
+                      .range([height-padding,padding]);
 
       var svg = d3.select("body").append("svg");
                   svg.attr("height", height)
