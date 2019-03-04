@@ -62,7 +62,7 @@
 
             var rScale= d3.scaleLinear()
                         .domain([0,d3.max(data, function(d){
-                          return Math.Sqrt[(d.fum)]; 
+                          return d.fum
                         })]);
 
 
@@ -79,7 +79,7 @@
 
     })
     .attr("r", function(d){
-      return rScale(d.fum);
+      return Math.Sqrt[(d.fum)];
     });
 
 //var labels= svg.selectAll("text")
