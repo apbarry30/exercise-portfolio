@@ -37,6 +37,7 @@
     <script>
     var width= 800;
     var height= 600;
+    var padding=20;
     //Show the relationship between yards (`Yds`) and touchdowns (`TD`). Use fumbles (`fum`) to represent the size of each point.
    d3.csv("data/nfl-rushing.csv").then(function(data){
         console.log(data);
@@ -87,12 +88,13 @@
 //            .text(function(d){
 //              return d.Yds + "," + d.fum;
 //            })
-var padding=20;
+
+var xScale=
 var xAxis= d3.axisBottom(xScale);
 
             svg.append("g")
             .attr("class", "xaxis")
-            .attr("transform", "translate(0," + (height-padding)+ ")");
+            .attr("transform", "translate(20," + (width-padding)+ ")");
 
             var yAxis = d3.axisLeft(yScale);
 
