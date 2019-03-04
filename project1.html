@@ -54,7 +54,7 @@
                       .domain([0,d3.max(data, function(d){
                         return d.w;
                       })])
-                      .range([height-padding,padding]);
+                      .range([padding, height-padding]);
 
       var svg = d3.select("body").append("svg");
                   svg.attr("height", height)
@@ -92,10 +92,10 @@
              					 .style("font-size", "8px");
 
                         labels.attr("x", function(d, i) {
-                					  return (i * 20) + 1;
+                					  return xScale(i * 20) + 1;
                   				})
                 				  .attr("y", function(d) {
-                						return (height - d.w) + 8;
+                						return yScale(height - d.w) + 8;
                 					});
 
 
