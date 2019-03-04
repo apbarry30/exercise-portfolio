@@ -74,7 +74,7 @@
           					   return (i*4)+1;
           				   })
                      .attr("y", function(d) {
-                     return yScale(d.w);
+                     return d.w;
                      });
 
 
@@ -97,7 +97,7 @@
                 					  return (i * 20) + 1;
                   				})
                 				  .attr("y", function(d) {
-                						return d.w;
+                						return d.w +1;
                 					});
 
 
