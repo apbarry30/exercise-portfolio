@@ -64,7 +64,9 @@
                         .domain([0,d3.max(data, function(d){
                           return d.fum
                         })])
-                        .range(0,height);
+                        .range(0,d3.max(data,function(d){
+                          return d.fum;
+                        }));
 
   var circles= svg.selectAll("circle")
     .data(data)
