@@ -88,8 +88,8 @@
 //              return d.Yds + "," + d.fum;
 //            })
 var padding=20;
-var xAxis= d3.axisBottom()
-            .scale(xScale);
+var xAxis= d3.axisBottom(xScale);
+            
             svg.append("g")
             .attr("class", "xaxis")
             .attr("transform", "translate(0," + (height-padding)+ ")");
