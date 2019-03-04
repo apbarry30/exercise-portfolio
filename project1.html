@@ -67,7 +67,7 @@
 
                      rect.attr("width", 10)
           			     .attr("height", function(d) {
-          					 return xScale(d.w) })
+          					 return yScale(d.w) })
 
                      .attr("x", function(d,i) {
           					   return (i*4)+1;
