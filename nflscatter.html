@@ -49,24 +49,30 @@
 
             var padding=20;
             var xScale= d3.scaleLinear()
-                            .domain([0, d3.max(data,function(d){
-                              return d.Yds;
-                            })])
+            .domain([d3.min(data, function(d) {
+              return d.Yds;
+            }), d3.max(data, function(d) {
+              return d.Yds;
+            })])
                             .range([padding,width-padding]);
 
             var yScale= d3.scaleLinear()
-                            .domain([0, d3.max(data, function(d){
-                              return d.TD;
-                            })])
-                            .range([padding, height-padding]);
+            .domain([d3.min(data, function(d) {
+              return d.TD;
+            }), d3.max(data, function(d) {
+              return d.TD;
+            })])
+              .range([padding, height-padding]);
 
             var rScale= d3.scaleLinear()
-                        .domain([0,d3.max(data, function(d){
-                          return d.fum;
-                            })])
-                        .range([padding, height-padding]);
+            .domain([d3.min(data, function(d) {
+              return d.fum;
+            }), d3.max(data, function(d) {
+              return d.fum;
+            })])
+            .range([padding, height-padding]);
 
-                        
+
 
 
   var circles= svg.selectAll("circle")
