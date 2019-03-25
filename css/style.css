@@ -45,6 +45,14 @@ nav {
 }
 
 .xaxis{
-  fill: red;
 
+
+}
+
+.area {
+  fill: blue;
+}
+
+.midline{
+  stroke:  black;
 }

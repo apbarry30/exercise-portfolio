@@ -36,7 +36,7 @@
 
     <script>
     var width= 800;
-    var height= 600;
+    var height= 900;
     var padding=20;
     //Show the relationship between yards (`Yds`) and touchdowns (`TD`). Use fumbles (`fum`) to represent the size of each point.
    d3.csv("data/nfl-rushing.csv").then(function(data){
@@ -54,7 +54,7 @@
             }), d3.max(data, function(d) {
               return d.Yds;
             })])
-                            .range([padding,width-padding]);
+            .range([padding,width-padding]);
 
             var yScale= d3.scaleLinear()
             .domain([d3.min(data, function(d) {
@@ -62,7 +62,7 @@
             }), d3.max(data, function(d) {
               return d.TD;
             })])
-              .range([padding, height-padding]);
+              .range([height-padding,padding]);
 
             var rScale= d3.scaleLinear()
             .domain([d3.min(data, function(d) {
@@ -70,7 +70,7 @@
             }), d3.max(data, function(d) {
               return d.fum;
             })])
-            .range([padding, height-padding]);
+            .range([padding, width-padding]);
 
 
 
@@ -89,6 +89,7 @@
     })
     .attr("r", function(d){
       return rScale(d.fum);
+
     });
 
 //var labels= svg.selectAll("text")
@@ -103,14 +104,14 @@ var xAxis= d3.axisBottom(xScale)
 
             svg.append("g")
             .attr("class", "xaxis")
-            .attr("transform", "translate(0," + (height-padding)+ ")")
+            .attr("transform", "translate("+padding+"," + height + ")")
             .call(xAxis);
 
-            var yAxis = d3.axisLeft(yScale)
+var yAxis = d3.axisLeft(yScale)
 
                        svg.append("g")
                        .attr("class", "y-axis")
-                       .attr("transform", "translate ( 20,"+ (padding) + ")")
+                       .attr("transform", "translate(" +padding+ ",0)")
                        .call(yAxis);
 
                       	 });
