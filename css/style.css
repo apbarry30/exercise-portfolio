@@ -39,6 +39,10 @@ nav {
 
 }
 
+h5{
+  position:absolute;
+
+}
 .line{
   fill: none;
   stroke: black;
@@ -50,9 +54,9 @@ nav {
 }
 
 .area {
-  fill: blue;
+  fill: lightblue;
 }
 
-.midline{
-  stroke:  black;
+.topline{
+  stroke:  blue;
 }
