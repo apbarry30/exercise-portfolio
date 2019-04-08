@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Exercise Portfolio</title>
+    <link href="css/stylebars.css" rel="stylesheet" />
+    <!-- <style>
+
+      rect {
+        fill: blue;
+      }
+
+
+    </style> -->
+  </head>
+
+  <body>
+
+    <header>
+      <!-- ADD YOUR NAME -->
+      <h1>Amanda Barry: Exercise Portfolio</h1>
+    </header>
+
+    <div id="content">
+
+      <nav>
+        <ul>
+          <li><a href="index.html">Return to Main Page</a></li>
+        </ul>
+      </nav>
+
+      <main>
+
+        <h2>MLB team % of wins Bar Chart</h2>
+
+        <p>Percentage of wins by Grapefruit vs Cactus League</p>
+
+        <!-- ADD YOUR VISUALIZATION HERE -->
+
+      </main>
+    </div>
+
+    <script src="js/d3.min.js"></script>
+    <script src= "js/lodash.js"></script>
+    <script>
+    var width= 800;
+    var height= 500;
+    var padding=20;
+
+    var margin= {
+      top:10,
+      right:10,
+      bottom:10,
+      left:20
+    }
+
+     d3.csv("data/spring-training.csv").then(function(data){
+        console.log(data);
+
+        data.forEach(function(d) {
+
+          d.pct = +d.pct;
+        })
+var grapefruit = _.some(data, ['league', 'C']);
+console.log(grapefruit);
+var cactus= _.some(data, ['league', 'G']);
+        // one league at a time, sorted by win percentage
+    var sortedPctWins = _.sortBy(data, 'pct');
+        console.log(sortedPctWins);
+// Teams which share the same win percentage should be sorted alphabetically.
+
+        // group the leagues
+    var leagues = _.groupBy(sortedPctWins, 'league');
+        console.log(sortedPctWins);
+
+var league = _.groupBy(data,'league');
+console.log(league);
+
+
+        var xScale = d3.scaleLinear()
+                    .domain([0,d3.max(data,function(d){
+                      return d.pct;
+                    })])
+                   .range([0, width]);
+
+
+       var yScale =d3.scaleLinear()
+                   .domain([0,d3.max(data, function(d){
+                     return d.pct;
+                   })])
+                   .range([height,(0)]);
+
+
+
+      var svg = d3.select("body").append("svg");
+                  svg.attr("height", height)
+                  .attr("width", width);
+
+              var rect= svg.selectAll("rect")
+                     .data(sortedPctWins)
+                     .enter()
+                     .append("rect")
+                     .attr("width", 10)
+          			     .attr("height", function(d) {
+          					 return yScale(d.pct); })
+
+                     .attr("x", function(d,i) {
+          					   return padding+(i*15)+1;
+          				   })
+                     .attr("y", function(d) {
+                     return height-[yScale(d.pct)]-padding;
+                     });
+
+
+                     var labels = svg.selectAll("labels")
+                     .data(sortedPctWins)
+                     .enter()
+                     .append("text")
+                     .style("font-size", 8)
+                     .attr("x", function(d,i) {
+                       return padding+(i*15)+1.5;
+                     })
+                     .attr("y", function(d){
+                        return height-[yScale(d.pct)]-(padding+2);
+                     })
+                     .text(function(d){
+                       return d.abbr;
+                     });
+
+
+
+            var xAxis= d3.axisBottom(xScale)
+                   svg.append("g")
+                  .attr("class", "xaxis")
+                  .attr("transform", "translate("+padding+"," + (height-padding) + ")")
+                  .call(xAxis);
+
+
+
+                          var yAxis = d3.axisLeft(yScale)
+                                       svg.append("g")
+                                         .attr("class", "y-axis")
+                                        .attr("transform", "translate(" +padding+ ", -20)")
+                                         .call(yAxis);
+
+
+
+
+              svg.append("div")
+                 .attr("class", "Grapefruit")
+                 .attr("x", 200)
+                 .attr("y",300)
+                 .attr("width",10)
+                 .attr("height",10)
+                .style("fill", "red")
+
+             .on("mouseover", function(d){
+                   var currentX = (+d3.select(this).attr("x")) +
+                           (+d3.select(this).attr("width")/2);
+                   var currentY = (+d3.select(this).attr("y")) +
+                       (+d3.select(this).attr("height")/2)
+                      d3.select(".Grapefruit")
+                      .classed("hidden",false)
+                       d3.select(this).attr("fill","red");
+                      })
+  });    // OR
+      // add a link to a stand-alone script in the js folder
+
+    </script>
+  </body>
+</html>

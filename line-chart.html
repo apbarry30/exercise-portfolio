@@ -60,11 +60,13 @@ var margin= {
                      .attr("width", width + margin.left + margin.right)
                      .attr("height", height + margin.top + margin.bottom);
 
-       var xScale = d3.scaleTime()
-                 .domain(d3.extent(data, function(d) {
-                   return d.Date;
-                 }))
-                 .range([0,width]);
+       var xScale = d3.scaleLinear()
+       .domain([d3.min(data, function(d) {
+         return d.Close;
+       }), d3.max(data, function(d) {
+         return d.Close;
+       })])
+          .range([height,0]);
 
        var yScale =d3.scaleLinear()
     .domain([d3.min(data, function(d) {
@@ -86,7 +88,7 @@ var path = svg.append("path")
        .datum(data)
        .attr("class", "line")
        .attr("d", line)
-       .attr("transform", "translate("+padding+", 0)");
+       .attr("transform", "translate("+padding+"," +padding+ ")")
 
 
        var xAxis= d3.axisBottom(xScale)
@@ -98,10 +100,10 @@ var path = svg.append("path")
 
        var yAxis = d3.axisLeft(yScale)
 
-                              svg.append("g")
-                              .attr("class", "y-axis")
-                              .attr("transform", "translate(" + padding+ ",0)")
-                              .call(yAxis);
+                          svg.append("g")
+                          .attr("class", "y-axis")
+                          .attr("transform", "translate("+padding+"," +height+ ")")
+                          .call(yAxis);
     //
     // var labels =
     // d3.selectAll("text")
