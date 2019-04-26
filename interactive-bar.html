@@ -61,25 +61,36 @@
 
           d.pct = +d.pct;
         })
-var grapefruit = _.some(data, ['league', 'C']);
+var grapefruit = _.filter(data, function(d) {
+    if (d.league == "G") {
+      return d;
+    }});
 console.log(grapefruit);
-var cactus= _.some(data, ['league', 'G']);
-        // one league at a time, sorted by win percentage
-    var sortedPctWins = _.sortBy(data, 'pct');
-        console.log(sortedPctWins);
+var GsortedPctWins =  _.orderBy(grapefruit, ['pct', 'team'], ['desc', 'asc']);
+// Teams which share the same win percentage should be sorted alphabetically.
+
+    // group the leagues
+var Gleagues = _.groupBy(GsortedPctWins, 'league');
+    console.log(Gleagues);
+
+var cactus = _.filter(data, function(d) {
+  if (d.league == "C") {
+    return d;
+  }
+});          // one league at a time, sorted by win percentage
+    var CsortedPctWins =  _.orderBy(cactus, ['pct', 'team'], ['desc', 'asc']);
 // Teams which share the same win percentage should be sorted alphabetically.
 
         // group the leagues
-    var leagues = _.groupBy(sortedPctWins, 'league');
-        console.log(sortedPctWins);
+    var Cleagues = _.groupBy(CsortedPctWins, 'league');
+        console.log(Cleagues);
 
-var league = _.groupBy(data,'league');
-console.log(league);
+
 
 
         var xScale = d3.scaleLinear()
                     .domain([0,d3.max(data,function(d){
-                      return d.pct;
+                      return +d.abbr;
                     })])
                    .range([0, width]);
 
@@ -96,32 +107,19 @@ console.log(league);
                   svg.attr("height", height)
                   .attr("width", width);
 
-              var rect= svg.selectAll("rect")
-                     .data(sortedPctWins)
-                     .enter()
-                     .append("rect")
-                     .attr("width", 10)
-          			     .attr("height", function(d) {
-          					 return yScale(d.pct); })
 
-                     .attr("x", function(d,i) {
-          					   return padding+(i*15)+1;
-          				   })
-                     .attr("y", function(d) {
-                     return height-[yScale(d.pct)]-padding;
-                     });
 
 
                      var labels = svg.selectAll("labels")
-                     .data(sortedPctWins)
+                     .data(CsortedPctWins)
                      .enter()
                      .append("text")
-                     .style("font-size", 8)
+                     .style("font-size", 7)
                      .attr("x", function(d,i) {
-                       return padding+(i*15)+1.5;
+                       return padding+(i*20)+10;
                      })
                      .attr("y", function(d){
-                        return height-[yScale(d.pct)]-(padding+2);
+                        return height-[yScale(d.pct)]-(padding+3);
                      })
                      .text(function(d){
                        return d.abbr;
@@ -146,23 +144,77 @@ console.log(league);
 
 
 
-              svg.append("div")
+    var grapebutton =svg.append("rect")
                  .attr("class", "Grapefruit")
-                 .attr("x", 200)
-                 .attr("y",300)
-                 .attr("width",10)
-                 .attr("height",10)
-                .style("fill", "red")
+                 .attr("x", 70)
+                 .attr("y",50)
+                 .attr("width",50)
+                 .attr("height",50)
+                .style("fill", "purple")
 
-             .on("mouseover", function(d){
+var cactusbutton  =svg.append("rect")
+                   .attr("class", "Cactus")
+                   .attr("x", 70)
+                   .attr("y",0)
+                   .attr("width",50)
+                   .attr("height",50)
+                  .style("fill", "green");
+
+
+          cactusbutton.on("mouseover", function(d){
+            var Crect= svg.selectAll("rect")
+                   .data(CsortedPctWins)
+                   .enter()
+                   .append("rect")
+                   .attr("width", 15)
+
+                   .attr("height", function(d) {
+                   return yScale(d.pct); })
+
+                   .attr("x", function(d,i) {
+                     return padding+(i*20)+10;
+                   })
+                   .attr("y", function(d) {
+                   return height-[yScale(d.pct)]-padding;
+                   });
                    var currentX = (+d3.select(this).attr("x")) +
                            (+d3.select(this).attr("width")/2);
                    var currentY = (+d3.select(this).attr("y")) +
                        (+d3.select(this).attr("height")/2)
-                      d3.select(".Grapefruit")
+                      d3.select(".cactus")
                       .classed("hidden",false)
-                       d3.select(this).attr("fill","red");
                       })
+
+                      grapebutton.on("mouseover", function(d){
+                        svg.selectAll(".bars")
+                           .data(Gleagues)
+                           .transition()
+                           .duration(1500)
+                           .ease(d3.easeElasticOut)
+                        var Grect= svg.selectAll("rect")
+                               .data(Gleagues)
+                               .enter()
+                               .append("rect")
+                               .attr("width", 15)
+                               .attr("height", function(d) {
+                               return yScale(d.pct); })
+
+                               .attr("x", function(d,i) {
+                                 return padding+(i*20)+10;
+                               })
+                               .attr("y", function(d) {
+                               return height-[yScale(d.pct)]-padding;
+                               });
+                               var currentX = (+d3.select(this).attr("x")) +
+                                       (+d3.select(this).attr("width")/2);
+                               var currentY = (+d3.select(this).attr("y")) +
+                                   (+d3.select(this).attr("height")/2)
+                                  d3.select(".Grapefruit")
+                                  .classed("hidden",false)
+
+                                  })
+
+
   });    // OR
       // add a link to a stand-alone script in the js folder
 

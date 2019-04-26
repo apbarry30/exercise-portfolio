@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Exercise Portfolio</title>
+    <link href="css/style.css" rel="stylesheet" />
+  </head>
+
+  <body>
+
+    <header>
+      <!-- ADD YOUR NAME -->
+      <h1>Amanda Barry: Exercise Portfolio</h1>
+    </header>
+
+    <div id="content">
+
+      <nav>
+        <ul>
+          <li><a href="index.html">Return to Main Page</a></li>
+        </ul>
+      </nav>
+
+      <main>
+
+        <h2>Map of the Ancient and Modern World Wonders</h2>
+
+        <p><!-- INFORMATION ABOUT YOUR VISUALIZATION: What is this about? --></p>
+
+        <!-- ADD YOUR VISUALIZATION HERE -->
+
+      </main>
+    <!-- </div>
+<div class= .tooltip>
+</div> -->
+    <script src="js/d3.min.js"></script>
+    <script src="js/lodash.js"></script>
+    <script>
+
+    var width = 700;
+    var height = 600;
+
+    var margin = {
+      top: 50,
+      bottom: 30,
+      left: 60,
+      right: 30,
+    };
+
+    var svg = d3.select("body")
+      .append("svg")
+      .attr("width", width)
+      .attr("height", height)
+      .append("g")
+      .attr("tranform", "translate(0" + margin.left + "," + margin.top + ")");
+
+
+
+d3.json("data/geojson/world.json").then(function(world){
+        d3.csv("data/seven-ancient-wonders.csv").then(function(anc){
+          d3.csv("data/seven-modern-wonders.csv").then(function(mod){
+            console.log(mod);
+//merge
+var Wonders = _.zip(anc, mod);
+console.log(Wonders);
+
+
+var Mflat = _.flatten(Wonders);
+console.log(Mflat);
+// var sitesModern =
+
+
+            var projection = d3.geoMercator()
+              .translate([width/2, height/2])
+              .scale([100]);
+
+            var path= d3.geoPath()
+              .projection(projection);
+//one map
+            var map = svg.append("g")
+              .attr("id", "map")
+              map.selectAll("path")
+              .data(world.features)
+              .enter()
+              .append("path")
+              .attr("d", path)
+              .attr("fill", "lightblue")
+              .attr("stroke", "white")
+              .attr("stroke-width", "1.5px");
+
+svg.append("rect")
+.attr("class", "tooltip")
+.attr("fill" , "blue")
+.attr("opacity", ".2")
+.attr("width" ,"100px")
+.attr("height", "100px");
+//other map
+// var map = svg.append("g")
+//   .attr("id", "map")
+//   map.selectAll("path")
+//   .data(modernWonders.features)
+//   .enter()
+//   .append("path")
+//   .attr("d", path)
+//   .attr("fill", "lightblue")
+//   .attr("stroke-width", "1.5px");
+var plots = map.selectAll("circle")
+  .data(Mflat)
+  .enter()
+  .append("circle")
+  .attr("class", "sites")
+  .attr("cx", function(d) {
+    if (projection([d.longitude, d.latitude])) {
+      return projection([d.longitude, d.latitude])[0];
+    }
+  })
+  .attr("cy", function(d) {
+    if (projection([d.longitude, d.latitude])) {
+      return projection([d.longitude, d.latitude])[1];
+    }
+  })
+  .attr("fill", "red")
+  .attr("r", "5px")
+
+
+   //INTERACTIVITY
+   .on("mouseover", function(d) {
+        d3.select(".tooltip").classed("hidden", false)
+
+      })
+      .on("mousemove", function(d) {
+        var currentX = d3.event.pageX + 10;
+        var currentY = d3.event.pageY + 10;
+        d3.select(".tooltip")
+          .style("left", currentX + "px")
+          .style("top", currentY + "px")
+          .html("<p>Wonder Name: " + d.wonder + "<br/>" + "Constructed: " + d.constructed + "<br/>" + "Destroyed:" + d.destroyed + "<br/>" + "Builders: " + d.builders);
+      })
+      .on("mouseout", function(d) {
+
+        d3.select(".tooltip").classed("hidden", true);
+      });
+                         //  .on("mouseover", function(d) {
+                         // //   d3.select(this).attr("fill", "black");
+                         //     d3.select(".tooltip").classed("hidden",false)
+                         //
+                         //  })
+                         //  .on("mousemove", function(d) {
+                         //    var currentX = d3.event.pageX + 10;
+                         //    var currentY = d3.event.pageY + 10;
+                         //    d3.select(".tooltip")
+                         //      .style("left",currentX + "px")
+                         //      .style("top",currentY + "px")
+                         //      .html("<p>Wonder Name: " + d.wonder + "<br/>" + "Constructed: " + d.constructed + "<br/>" + "Destroyed:" + d.destroyed + "<br/>" + "Builders: " + d.builders);
+                         //  })
+                         //  .on("mouseout", function(d) {
+                         // //   d3.select(this).attr("fill", "red");
+                         //     d3.select(".tooltip").classed("hidden",true);
+                         //  });
+          })
+        })
+      })
+      // add your script here
+      // OR
+      // add a link to a stand-alone script in the js folder
+
+    </script>
+  </body>
+</html>

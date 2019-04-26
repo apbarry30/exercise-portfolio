@@ -60,3 +60,17 @@ h5{
 .topline{
   stroke:  blue;
 }
+
+
+.tooltip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #ffffff;
+  border: 1px solid #000000;
+  border-radius: 10px;
+  display: block;
+}
+.tooltip.hidden {
+  display: none;
+}

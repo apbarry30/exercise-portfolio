@@ -32,7 +32,7 @@
 
       </main>
     </div>
-
+<div class="tooltip"></div>
     <script src="js/d3.min.js"></script>
     <script src="js/lodash.js"></script>
     <script>
@@ -90,16 +90,71 @@ return xScale(d.Date);
 return yScale(d.Close);
 });
 
-
-var path = svg.append("path")
-  .data([data])
-  .attr("class", "line")
-  .attr("d", line)
-  .attr("transform", "translate("+padding+",4)")
-  .attr("fill", "none")
-.attr("stroke", "steelblue");
 // .attr("stroke-linejoin", "round")
 // .attr("stroke-linecap", "round");
+var tooltip=
+    svg.selectAll("rect")
+  .data(data)
+  .enter()
+  .append("rect")
+  .attr("class", "tooltip")
+  .attr("x", 40)
+  .attr("y",20)
+  .attr("width", "150px")
+  .attr("height", "20px")
+  .attr("fill", "lightblue")
+  .attr("opacity",".5")
+
+  // attributes
+  // .on("mouseover",function(d){
+  //
+  //   var currentX = (+d3.select(this).attr("x")) +
+  //     (+d3.select(this)
+  //     .attr("width")/2)
+  //
+  //   var currentY = (+d3.select(this).attr("y")) +
+  //   (+d3.select(this).attr("height")/2);
+  //
+  //   d3.select(".tooltip")
+  //     .style("left",currentX + "px")
+  //     .style("top",currentY + "px");
+  //
+  //   d3.select(".tooltip").classed("hidden",false);
+  // })
+  // .on("mouseout",function(d){
+  //   d3.select(".tooltip").classed("hidden",true);
+  // });
+    // .style("opacity", 0);
+
+
+
+
+var path=  svg.append("path")
+       .attr("transform", "translate("+margin.left+","+margin.top+")")
+       .datum(data)
+       .attr("class", "line")
+       .attr("d",line)
+       .attr("transform", "translate("+padding+",4)")
+       .attr("fill", "none")
+     .attr("stroke", "2px","steelblue")
+       .on("mouseover", function(d) {
+         d3.select(".tooltop").classed("hidden", false)
+       })
+       .on("mousemove", function(d) {
+         var currentX = d3.event.pageX;
+         var currentY = d3.event.pageY;
+         d3.select(".tooltip")
+           .style("left", currentX + "px")
+           .style("top", currentY + "px")
+           .attr("y2",yScale(d3.max(data,function(d) {
+               return d.Close;
+         })))
+           .html(d.Date + "<br/>" + "High: " + +d.High + "<br/>" + "Low: " + d.Low);
+           console.log(d.High);
+       })
+       .on("mouseout", function(d) {
+         d3.select(".tooltip").classed("hidden", true);
+       });
 
 var xAxis= d3.axisBottom(xScale)
 
@@ -127,76 +182,91 @@ var yAxis = d3.axisLeft(yScale)
                          })))
                           .attr("transform", "translate("+padding+",4)");
 
+                        svg.append("text")
+                             .attr("class", "toplineLabel")
+                             .text("Highest Closing Price: $" + d3.max(data, function(d) {
+                               return d.Close;
+                             }))
+                             .attr("x", 110)
+                             .attr("y", margin.top + 20);
 
+                             var mean = d3.mean(data, function(d) {
+                                       return d.Close
+                                     });
+                                         svg.append("line")
+                                         .attr("class","midline")
+                                         .attr("x1",margin.left)
+                                         .attr("x2",width)
+                                         .attr("y1",yScale(mean) + margin.top)
+                                         .attr("y2",yScale(mean) + margin.top)
+                                         .attr("stroke", "2px")
+                                         .attr("fill", "purple");
 
-
-var  circle=   svg.selectAll("circle")
-       .data(data)
-       .enter()
-       .append("circle")
-       .attr("r", 1)
-       .style("fill", "red")
-       .attr("cx", function(d) {
-         return xScale(d.Date)+padding; })
-       .attr("cy", function(d) {
-         return yScale(d.Close)+4; })
-         .filter(function(d){
-           if (d.Close == 96.43){
-             return d;
-           }
-         })
-
-var labels = svg.selectAll("labels")
-.data(data)
-.enter()
-.append("text")
-.attr("class", "tooltip")
-.attr("x", function(d){
-  return xScale(d.Date)+padding;
-})
-.attr("y", function(d){
-  return yScale(d.Close);
-})
-.text(function(d){
-  return d.Close;
+     var  circle=   svg.selectAll("circle")
+         .data(data)
+          .enter()
+          .append("circle")
+          .attr("r", 1)
+          .style("fill", "red")
+          .attr("cx", function(d) {
+              return xScale(d.Date)+padding; })
+          .attr("cy", function(d) {
+            return yScale(d.Close)+4; })
+          .filter(function(d){
+                if (d.Close == 96.43){
+                  return +d.Close;
+                          }
+                          })
 });
 
-//i cant get only one to show
 
-var tooltip= d3.select("body").append("div")
-    .attr("class", "tooltip")
-    .style("opacity", 0)
+// var closingRates = svg.selectAll("labels")
+// .data(data)
+// .enter()
+// .append("text")
+// .attr("class", "tooltip")
+// .attr("x", function(d){
+//   return xScale(d.Date)+padding;
+// })
+// .attr("y", function(d){
+//   return yScale(d.Close);
+// })
+// .text(function(d){
+//   return d.Close;
+// });
 
-.on("mouseover", function(d){
-      var currentX = (+d3.select(this).attr("x")) +
-              (+d3.select(this).attr("width")/2);
-      var currentY = (+d3.select(this).attr("y")) +
-          (+d3.select(this).attr("height")/2)
-         d3.select(".tooltip")
-         .classed("hidden",false)
-          d3.select(this).attr("fill","red");
-         })
-         .transition()
-         .duration(300)
 
-         //
-         // .on("mouseout", function(d) {
+//
+// var tooltip= d3.select("body").append("div")
+//     .attr("class", "tooltip")
+//     .style("opacity", 0)
+//
+// .on("mouseover", function(d){
+//       var currentX = (+d3.select(this).attr("x")) +
+//               (+d3.select(this).attr("width")/2);
+//       var currentY = (+d3.select(this).attr("y")) +
+//           (+d3.select(this).attr("height")/2)
+//          d3.select(".tooltip")
+//          .classed("hidden",false)
+//           d3.select(this).attr("fill","red");
+//          })
+//          .transition()
+//          .duration(300)
+
+
+         //  .on("mouseout", function(d) {
          //   d3.select(".tooltip")
          //   .classed("hidden" true)
          //   .style("left",currentX + "px")
          //        .style("top",currentY + "px");
          //
-         //   })
+         //    })
 
-        var text = svg.select("text")
-        .append("text")
-        .attr("id","tooltip")
-        .attr("x", currentX)
-        .attr("y", currentY)
-        .attr("transform", "translate(" + (margin.left + 5) + "," + (margin.top - 5) + ")")
-        .text("Highest Stock Price: ", circle, labels)
 
-});
+
+
+
+
         // add your script here
       // OR
       // add a link to a stand-alone script in the js folder

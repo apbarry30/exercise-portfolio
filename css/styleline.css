@@ -60,15 +60,13 @@ text{
 
 .tooltip {
   position: absolute;
-  text-align: center;
-  width: 50px;
-  height: 40px;
-  padding: 3px;
-  background: #A8A6D3;
-  border: 1px solid #222;
+  top: 0;
+  left: 0;
+  background: #ffffff;
+  border: 1px solid #000000;
   border-radius: 10px;
   display: block;
 }
-div.tooltip.hidden {
+.tooltip.hidden {
   display: none;
 }
