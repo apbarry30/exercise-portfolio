@@ -35,125 +35,128 @@
 
 
     <script>
-    var width= 800;
-    var height= 900;
-    var padding=50;
 
-    var margin = {
-      top: 50,
-      bottom: 30,
-      left: 60,
-      right: 30,
-    };
-    //Show the relationship between yards (`Yds`) and touchdowns (`TD`). Use fumbles (`fum`) to represent the size of each point.
-   d3.csv("data/nfl-rushing.csv").then(function(data){
-        console.log(data);
+      var width= 800;
+      var height= 900;
+      var padding=50;
 
-    var svg = d3.select("body")
-                .append("svg")
-                .attr("width", width)
-                .attr("height", height);
+      var margin = {
+        top: 50,
+        bottom: 30,
+        left: 60,
+        right: 30,
+      };
+      //Show the relationship between yards (`Yds`) and touchdowns (`TD`). Use fumbles (`fum`) to represent the size of each point.
+     d3.csv("data/nfl-rushing.csv").then(function(data){
+          console.log(data);
 
-            var xScale= d3.scaleLinear()
-            .domain([d3.min(data, function(d) {
-              return +d.Yds;
-            }), d3.max(data, function(d) {
-              return +d.Yds;
-            })])
-            .range([padding,width-padding]);
+      var svg = d3.select("body")
+                  .append("svg")
+                  .attr("width", width)
+                  .attr("height", height);
 
-            var yScale= d3.scaleLinear()
-            .domain([d3.min(data, function(d) {
-              return +d.TD;
-            }), d3.max(data, function(d) {
-              return +d.TD;
-            })])
-              .range([width-padding,padding]);
-
-            var rScale= d3.scaleLinear()
+              var xScale= d3.scaleLinear()
               .domain([d3.min(data, function(d) {
-                return +d.FUM;
+                return +d.Yds;
               }), d3.max(data, function(d) {
-                return +d.FUM;
+                return +d.Yds;
               })])
-            .range([3, 15]);
+              .range([padding,width-padding]);
 
-  var circles= svg.selectAll("circle")
-    .data(data)
-    .enter()
-    .append("circle");
+              var yScale= d3.scaleLinear()
+              .domain([d3.min(data, function(d) {
+                return +d.TD;
+              }), d3.max(data, function(d) {
+                return +d.TD;
+              })])
+                .range([width-padding,padding]);
 
-    circles.attr("cx", function(d,i){
-      return xScale(+d.Yds);
-    })
-    .attr("cy", function(d){
-      return yScale(+d.TD);
+              var rScale= d3.scaleLinear()
+                .domain([d3.min(data, function(d) {
+                  return +d.FUM;
+                }), d3.max(data, function(d) {
+                  return +d.FUM;
+                })])
+              .range([3, 15]);
 
-    })
-    .attr("r", function(d){
-      return rScale(+d.FUM);
-    })
-    .attr("fill", function(d) {
-      if(+d.FUM > 0){return "lightblue"}
-      else {return "purple"}
-    })
-    .style("fill-opacity", function(d) {
-      if (+d.Att >= 150){return 1}
-      else{return 0}
-    });
+    var circles= svg.selectAll("circle")
+      .data(data)
+      .enter()
+      .append("circle");
 
-//var labels= svg.selectAll("text")
-//            .data(data)
-//            .enter()
-//            .append("text")
-//            .text(function(d){
-//              return d.Yds + "," + d.fum;
-//            })
+      circles.attr("cx", function(d,i){
+        return xScale(+d.Yds);
+      })
+      .attr("cy", function(d){
+        return yScale(+d.TD);
 
-var xAxis= d3.axisBottom(xScale)
+      })
+      .attr("r", function(d){
+        return rScale(+d.FUM);
+      })
+      .attr("fill", function(d) {
+        if(+d.FUM > 0){return "lightblue"}
+        else {return "purple"}
+      })
+      .style("fill-opacity", function(d) {
+        if (+d.Att >= 150){return 1}
+        else{return 0}
+      });
 
-            svg.append("g")
-            .attr("class", "xaxis")
-            .attr("transform", "translate(0," + (750) + ")")
-            .call(xAxis);
+  //var labels= svg.selectAll("text")
+  //            .data(data)
+  //            .enter()
+  //            .append("text")
+  //            .text(function(d){
+  //              return d.Yds + "," + d.fum;
+  //            })
 
-            var yAxis = d3.axisLeft(yScale)
+  var xAxis= d3.axisBottom(xScale)
 
-                       svg.append("g")
-                       .attr("class", "y-axis")
-                       .attr("transform", "translate(" +(padding+1)+ ",0)")
-                       .call(yAxis);
+              svg.append("g")
+              .attr("class", "xaxis")
+              .attr("transform", "translate(0," + (750) + ")")
+              .call(xAxis);
 
-                       svg.append("text")
-                   					 .text("NFL Rushing Yards vs. Touchdowns")
-                   					 .attr("transform", "translate("+width/2+", 15)");
-                   			  svg.append("text")
-                              .text("Yards")
-                   					 .attr("transform", "translate(500,800)");
-                   				svg.append("text")
-                   				   .text("Touchdowns")
-                   					 .attr("text-anchor", "middle")
-                              .attr("transform", "translate(20,500)rotate(-90)")
+              var yAxis = d3.axisLeft(yScale)
 
+                         svg.append("g")
+                         .attr("class", "y-axis")
+                         .attr("transform", "translate(" +(padding+1)+ ",0)")
+                         .call(yAxis);
 
-                      	 });
-
-
-
-
-
-
-
-
-
-
-
-
+                         svg.append("text")
+                     					 .text("NFL Rushing Yards vs. Touchdowns")
+                     					 .attr("transform", "translate("+width/2+", 15)");
+                     			  svg.append("text")
+                                .text("Yards")
+                     					 .attr("transform", "translate(500,800)");
+                     				svg.append("text")
+                     				   .text("Touchdowns")
+                     					 .attr("text-anchor", "middle")
+                                .attr("transform", "translate(20,500)rotate(-90)")
 
 
-      // add your script here
-      // OR
-      // add a link to a stand-alone script in the js folder
+                        	 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // add your script here
+        // OR
+        // add a link to a stand-alone script in the js folder
+
+      
 
     </script>
   </body>
